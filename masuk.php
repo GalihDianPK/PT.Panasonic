@@ -225,7 +225,7 @@ require 'cek.php';
             <form method="post">
             <div class="modal-body">
 
-            <select name="barangnya" class="form-control"> <!-- ini dimasukin ke function.php -->
+            <select name="barangnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
                 <?php
                 $ambilsemuadatanya = mysqli_query($conn, "SELECT * from stock");
                 while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
