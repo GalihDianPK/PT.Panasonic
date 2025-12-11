@@ -10,6 +10,7 @@ require 'cek.php';
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Stok Barang</title>
@@ -122,6 +123,33 @@ require 'cek.php';
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- <div class="row">
                             <div class="col-xl-6">
@@ -145,8 +173,9 @@ require 'cek.php';
                         </div> -->
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i> <!-- untuk button ddari w3 -->
+                                <i class="fas fa-table me-1"></i> 
                                 Stock Barang
+                                <!-- untuk button ddari w3 -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 
                                     Tambah barang
                                 </button>
@@ -196,7 +225,13 @@ require 'cek.php';
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+        <!-- ini ditambah fade button tambah barang -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+        <!-- sampai sini -->
+
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
@@ -204,29 +239,30 @@ require 'cek.php';
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                Modal body..
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-                
-            </div>
-            </div>
-        </div>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
         
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Tambah Barang</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body --> <!-- kode untuk tambah barang -->
+            <form method="post">
+            <div class="modal-body">
+            <input type="text" name="namabarang" placeholder="Nama barang" class="form-control" required>
+            <br>
+            <input deskripsi="text" name="deskripsi" placeholder="Deskripi barang" class="form-control" required>
+            <br>
+            <input type="number" name="stock" class="form-control" placeholder="Stock Barang" required>
+            <br>
+            <button type="submit" name="addnewbarang" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>    
 </html>
