@@ -242,7 +242,9 @@ require 'cek.php';
             </select>
 
             <br>
-            <input type="text" name="penerima" class="form-control" placeholder="Penerima" required> <!-- function php -->
+            <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
+            <br> <!-- function php -->
+            <input type="text" name="penerima" class="form-control" placeholder="Penerima" required>
             <br>
             <button type="submit" name="barangmasuk" class="btn btn-primary">Submit</button>
             </div>

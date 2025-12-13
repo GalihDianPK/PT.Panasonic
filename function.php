@@ -27,9 +27,15 @@ if(isset($_POST['addnewbarang'])){
 if(isset($_POST['barangmasuk'])){
     $barangnya = $_POST['barangnya'];
     $penerima = $_POST['penerima'];
+    $qty = $_POST['qty'];
+
+    $cekstokbarang = mysqli_query($conn, "SELECT * FROM stock where idbarang='$barangnya'");
+    $ambildatanya = mysqli_fetch_array($cekstokbarang);
 
     // gapakai tanggal karena sdah otomatis settingan di mysql nya dan id masuk sudah ada di masuk php
-    $addtomasuk = mysqli_query($conn, "INSERT into masuk (idbarang, keterangan) values('$barangnya', '$penerima')");
+    $addtomasuk = mysqli_query($conn, "INSERT into masuk (idbarang, keterangan, qty) values('$barangnya', '$penerima', '$qty')");
+    $updatestockmasuk = mysqli_queryy($conn, "update stock where stock= ");
+
     if($addtomasuk) {
         header('Location:index.php');
     } else { 
