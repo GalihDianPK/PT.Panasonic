@@ -197,7 +197,12 @@ require 'cek.php';
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        <!-- Ganti bootstrap 5 menjadi 4 -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Ganti bootstrap 5 menjadi 4 -->
+
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
@@ -219,12 +224,30 @@ require 'cek.php';
             <!-- Modal body --> <!-- kode untuk tambah barang -->
             <form method="post">
             <div class="modal-body">
-            <input type="text" name="namabarang" placeholder="Nama barang" class="form-control" required>
+
+            <select name="barangnya" class="form-control"> <!-- ini dimasukin ke function.php (barangnya) -->
+                <?php
+                //? untuk menampilkan nama barang di select
+                $ambilsemuadatanya = mysqli_query($conn, "SELECT * from stock");
+                while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
+                    $namabarangnya = $fetcharray['namabarang'];
+                    $idbarangnya = $fetcharray['idbarang'];
+                ?>
+
+                <option value="<?=$idbarangnya;?>"><?=$namabarangnya;?></option>
+                
+                 <?php
+                }
+                
+                ?>
+            </select>
             <br>
-            <input deskripsi="text" name="deskripsi" placeholder="Deskripi barang" class="form-control" required>
+            <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
             <br>
-            <input type="number" name="stock" class="form-control" placeholder="Stock Barang" required>
+            <!-- penerima -->
+            <input type="text" name="penerima" placeholder="Penerima" class="form-control" required>
             <br>
+            <!-- penerima -->
             <button type="submit" name="addnewbarang" class="btn btn-primary">Submit</button>
             </div>
             </form>
