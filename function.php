@@ -51,7 +51,7 @@ if(isset($_POST['barangmasuk'])){
 } 
 
 //? menambah barang keluar
-if(isset($_POST['addbarangkeluar'])){
+if(isset($_POST['addnewbarang'])){
     $barangnya = $_POST['barangnya'];
     $penerima = $_POST['penerima'];
     $qty = $_POST['qty'];
@@ -60,13 +60,6 @@ if(isset($_POST['addbarangkeluar'])){
     $ambildatanya = mysqli_fetch_array($cekstockbarang);
 
     $stocksekarang = $ambildatanya['stock'];    
-
-    if(stocksekarang < qty){    
-        echo "Stok tidak cukup";
-        header('Location:keluar.php');
-        exit;
-    }
-    
     $tambahkanstocksekarangdenganquantity = $stocksekarang-$qty;
 
 
@@ -77,13 +70,12 @@ if(isset($_POST['addbarangkeluar'])){
 
     //? cek apakah dua query berhasil & masuk ke ddatabase  
 
-    if(stocksekarang < qty){    
-        echo "<script>
-            alert('Stock saat ini tidak mencukupi');
-            window.location.href='keluar.php';
-        </script>";
+    if($stocksekarang < $qty){    
+        echo "saldo tidak cukup";
+        header('Location:keluar.php');
     }
-    if($addtomasuk && $$updatestockmasuk) { 
+
+    if($addtokeluar && $updatestockmasuk) { 
         header('Location:keluar.php');
     } else { 
         echo "Gagal";
