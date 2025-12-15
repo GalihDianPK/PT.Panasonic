@@ -172,11 +172,14 @@ require 'cek.php';
                             </div>
                         </div> -->
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i> 
-                                Stock Barang
+                            <div class="card-header d-flex align-items-center">
+                                
+                                 <!-- Icon + Text (Kiri) -->
+                                <i class="fas fa-table me-2"></i>
+                                <span>Stock Barang</span>
+
                                 <!-- untuk button ddari w3 -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 
+                                <button type="button" class="btn btn-primary ms-auto" data-toggle="modal" data-target="#myModal"> 
                                     Tambah barang
                                 </button>
                             </div>
@@ -190,21 +193,31 @@ require 'cek.php';
                                             <th>Stock</th>
                                         </tr>
                                     </thead>
-                                    <tfoot> <!--ini untuk tabel nya -->
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                        </tr>
-                                    </tfoot>
+                                   
                                     <tbody>
+                                        <?php
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM stock");
+
+                                        $i = 1; //? untuk setel mulai dari nomor 1
+
+                                        while($data=mysqli_fetch_array($ambilsemuadatastock)){
+                                            
+                                            $namabarang = $data['namabarang'];
+                                            $deskripsi = $data['deskripsi'];
+                                            $stock = $data['stock'];
+                                        
+                                        ?>
                                         <tr> <!-- data tabel -->
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                            <td><?=$i++;?></td>
+                                            <td><?=$namabarang;?></td>
+                                            <td><?=$deskripsi;?></td>
+                                            <td><?=$stock;?></td>
                                         </tr>
+                                        <?php
+                                        };
+                                        ?>
+
+
                                     </tbody>
                                 </table>
                             </div>

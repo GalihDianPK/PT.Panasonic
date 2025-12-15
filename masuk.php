@@ -144,11 +144,14 @@ require 'cek.php';
                             </div>
                         </div> -->
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i> 
-                                Stock Barang
+                            <div class="card-header d-flex align-items-center">
+                                
+                                 <!-- Icon + Text (Kiri) -->
+                                <i class="fas fa-table me-2"></i>
+                                <span>Barang Masuk</span>
+
                                 <!-- untuk button ddari w3 -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 
+                                <button type="button" class="btn btn-primary ms-auto" data-toggle="modal" data-target="#myModal"> 
                                     Tambah barang
                                 </button>
                             </div>
@@ -156,27 +159,36 @@ require 'cek.php';
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr> <!-- ini untuk banyak baris-->
-                                            <th>No</th>
+
+                                            <th>Tanggal</th>
                                             <th>Nama Barang</th>
-                                            <th>Deskripsi</th>
-                                            <th>Stock</th>
+                                            <th>ID Masuk</th>
+                                            <th>Jumlah</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
-                                    <tfoot> <!--ini untuk tabel nya -->
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
+                                    <tbody> <!-- kode php untuk nampilin data ke tabel -->
+                                        <?php
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM masuk m, stock s where s.idbarang = m.idbarang");
+                                        while($data=mysqli_fetch_array($ambilsemuadatastock)){
+                                            
+                                            $idmasuk = $data['idmasuk'];
+                                            $tanggal = $data['tanggal'];
+                                            $keterangan = $data['keterangan'];
+                                            $qty = $data['qty'];
+                                            $namabarang = $data['namabarang'];
+                                        ?>
                                         <tr> <!-- data tabel -->
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                           
+                                            <td><?=$tanggal;?></td>
+                                            <td><?=$namabarang;?></td>
+                                            <td><?=$idmasuk;?></td>
+                                            <td><?=$qty;?></td>
+                                            <td><?=$keterangan;?></td>
                                         </tr>
+                                        <?php
+                                        };
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

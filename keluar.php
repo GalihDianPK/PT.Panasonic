@@ -144,11 +144,14 @@ require 'cek.php';
                             </div>
                         </div> -->
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i> 
-                                Stock Barang
+                            <div class="card-header d-flex align-items-center">
+                                
+                                 <!-- Icon + Text (Kiri) -->
+                                <i class="fas fa-table me-2"></i>
+                                <span>Barang Keluar</span>
+
                                 <!-- untuk button ddari w3 -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 
+                                <button type="button" class="btn btn-primary ms-auto" data-toggle="modal" data-target="#myModal"> 
                                     Tambah barang
                                 </button>
                             </div>
@@ -156,27 +159,32 @@ require 'cek.php';
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr> <!-- ini untuk banyak baris-->
-                                            <th>No</th>
+                                            <th>tanggal</th>
                                             <th>Nama Barang</th>
-                                            <th>Deskripsi</th>
-                                            <th>Stock</th>
+                                            <th>Jumlah</th>
+                                            <th>Penerima</th>
                                         </tr>
                                     </thead>
-                                    <tfoot> <!--ini untuk tabel nya -->
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
+                                    <tbody> <!-- kode php untuk nampilin data ke tabel -->
+                                        <?php
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM keluar k, stock s where s.idbarang = k.idbarang");
+                                        while($data=mysqli_fetch_array($ambilsemuadatastock)){
+                                            
+                                            $tanggal = $data['tanggal'];
+                                            $penerima = $data['penerima'];
+                                            $qty = $data['qty'];
+                                            $namabarang = $data['namabarang'];
+                                        ?>
                                         <tr> <!-- data tabel -->
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                           
+                                            <td><?=$tanggal;?></td>
+                                            <td><?=$namabarang;?></td>
+                                            <td><?=$qty;?></td>
+                                            <td><?=$penerima;?></td>
                                         </tr>
+                                        <?php
+                                        };
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
