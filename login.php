@@ -1,12 +1,17 @@
 <?php
-require 'function.php';
+require 'function.php'; //! ini wajin ditambahkan biar link ke function.php
 
-if (isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if (isset($_POST['login'])){ //? ini diambil dari login php html bagian button dan input
+    $email = $_POST['email']; //? sama
+    $password = $_POST['password']; //? sama
+    
+    //? buat hash untuk kemanan password
+    $hash= password_hash($password, PASSWORD_DEFAULT); 
+
 
     //? mencocokan dengan data databse
     $cekdatabase = mysqli_query($conn, "SELECT * FROM login where email='$email' and password='$password'");
+
     //? hitung jumlah data
     $hitung = mysqli_num_rows($cekdatabase);
 
@@ -20,7 +25,7 @@ if (isset($_POST['login'])){
 
 //? cek login, kalau udah langsung ke index
 if (!isset($_SESSION['log'])){
-
+    
 } else {
     header('location:index.php');
 };
